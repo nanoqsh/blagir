@@ -42,6 +42,9 @@ class Database
     {
         $result = [];
         $query_result = $this->connection->query($sql);
+
+        if ($query_result === FALSE)
+            trigger_error("MySQL fail: " . $this->connection->error, E_USER_ERROR);
         
         while ($row = $query_result->fetch_assoc())
             $result[] = $row;
